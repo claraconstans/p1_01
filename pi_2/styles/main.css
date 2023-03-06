@@ -1,4 +1,8 @@
-#title{
+
+body{
+	background-color: white;
+}
+	#title{
 	font-size: 1.625rem;
 	line-height: 4.688px;
 }
@@ -35,6 +39,6 @@ button.button:active{
 button.button:hover:not(:active){
 	width: 27.313rem;
 	height: 5.313rem;
-	box-shadow: 2px 2px 5px #9f4dfc;
+	background-color: purple;
 	margin: auto;
 }
