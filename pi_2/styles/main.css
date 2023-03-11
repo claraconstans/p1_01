@@ -17,12 +17,28 @@ body{
 	grid-auto-rows: minmax(6.25rem, auto);
 }
 
+.distribucio-cartes{
+	grid-column: 2/3;
+	grid-row: 2;
+	margin: auto;
+	/*display: grid;
+	grid-template-columns: 1fr 30rem;
+	grid-gap: 0.625rem;
+	/*grid-template-rows: 1fr 30rem 1fr;
+	/*grid-auto-rows: minmax(6.25rem);*/
+}
+
+/*.carta{
+	grid-column: 2/3;
+	grid-row: 2;
+}*/
+
 .titol{
 	grid-column: 2/3;
 	grid-row: 1;
 }
 
-.button {
+.button{
 	font-size: 1.563rem;
 	grid-column: 2/3;
 	grid-row: auto;
@@ -31,6 +47,14 @@ body{
 	border: none;
 	border: 0.125rem solid rgb(98, 124, 95);
 }
+
+/*.carta{
+	font-size: 1.563rem;
+	/*grid-column: 2/3;
+	grid-row: auto;
+	grid-column: auto;
+	grid-row: 2/3;
+}*/
 
 p{
 	text-align: center;
