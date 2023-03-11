@@ -4,8 +4,7 @@ body{
 }
 
 #title{
-	font-size: 1.875rem;
-	/*background-color: rgb(98, 124, 95);*/
+	font-size: 2.063rem;
 	color: rgb(98, 124, 95);
 }
 
@@ -22,12 +21,13 @@ body{
 }
 
 .button {
-	font-size: 1.25rem;
+	font-size: 1.563rem;
 	grid-column: 2/3;
 	grid-row: auto;
-	color: rgb(144, 182, 140);
-	background-color: rgb(98, 124, 95);
+	color: rgb(98, 124, 95);
+	background-color: rgb(144, 182, 140);
 	border: none;
+	border: 0.125rem solid rgb(98, 124, 95);
 }
 
 p{
@@ -35,16 +35,17 @@ p{
 }
 
 button.button:active{
-	/*width: 17.188rem;
-	height: 4.375rem;*/
+	width: 17.188rem;
+	height: 4.375rem;
+	background-color: rgb(98, 124, 95);
+	color: rgb(144, 182, 140);
 	margin: auto;
 }
 
 button.button:hover:not(:active){
-	/*width: 27.313rem;
-	height: 5.313rem;*/
+	width: 27.313rem;
+	height: 5.313rem;
 	background-color: rgb(98, 124, 95);
-	color: white;
-	border: white;
-	/*margin: auto;*/
+	color: rgb(144, 182, 140);
+	margin: auto;
 }
