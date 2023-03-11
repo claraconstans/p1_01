@@ -1,11 +1,13 @@
 
 body{
 	background-color: rgb(144, 182, 140);
+	font-family: sans-serif;
 }
 
 #title{
 	font-size: 2.063rem;
 	color: rgb(98, 124, 95);
+	font-family: sans-serif;
 }
 
 .menu-object{
