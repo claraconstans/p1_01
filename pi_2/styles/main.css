@@ -1,6 +1,6 @@
 
 body{
-	background-color: rgb(144, 182, 140);
+	background-color: rgb(153, 178, 151);
 	font-family: sans-serif;
 }
 
@@ -27,7 +27,7 @@ body{
 	grid-column: 2/3;
 	grid-row: auto;
 	color: rgb(98, 124, 95);
-	background-color: rgb(144, 182, 140);
+	background-color: rgb(153, 178, 151);
 	border: none;
 	border: 0.125rem solid rgb(98, 124, 95);
 }
@@ -40,7 +40,7 @@ button.button:active{
 	width: 17.188rem;
 	height: 4.375rem;
 	background-color: rgb(98, 124, 95);
-	color: rgb(144, 182, 140);
+	color: rgb(153, 178, 151);
 	margin: auto;
 }
 
@@ -48,6 +48,6 @@ button.button:hover:not(:active){
 	width: 27.313rem;
 	height: 5.313rem;
 	background-color: rgb(98, 124, 95);
-	color: rgb(144, 182, 140);
+	color: rgb(153, 178, 151);
 	margin: auto;
 }
