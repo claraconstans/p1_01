@@ -4,6 +4,7 @@
 		<link rel="stylesheet" href="../styles/main.css">
 		<script src="../js/game_controller.js"></script>
 		<script src="../js/loader.js"></script>
+		<script src="../js/menu_controller.js"></script>
 		<title> My first game - Game </title>
 	</head>
 	<body>
@@ -15,7 +16,9 @@
 				<img class="carta" src="../resources/tb.png" onclick="items[2].do_click()">
 				<img class="carta" src="../resources/cb.png" onclick="items[3].do_click()">
 			</div>
-			<a class=return href="../">GoToMenu</a>
+			<button class="button" onclick="exit()"> 
+				Go To Menu
+			</button>
 		</div>
 	</body>
 </html>
