@@ -82,7 +82,7 @@ var game = new Vue({
 	},
 	computed: {
 		score_text: function(){
-			return 100 - this.bad_clicks * 20;
+			return 100 - this.bad_clicks * 15 * this.dificulty;
 		}
 	}
 });
