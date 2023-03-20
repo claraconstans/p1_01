@@ -22,8 +22,16 @@ var game = new Vue({
 		this.items = this.items.concat(this.items); // Dupliquem els elements
 		this.items.sort(function(){return Math.random() - 0.5}); // Array aleatòria
 		for (var i = 0; i < this.items.length; i++){
-			this.current_card.push({done: false, texture: back});
+			this.current_card.push({done: false, texture: this.items[i]});
 		}
+		mostrantCartes = true;
+		setTimeout(() => {
+				console.log("Delayed for 1 second.");
+				for (var i = 0; i < this.current_card.length; i++){
+					Vue.set(this.current_card, i, {done: false, texture: back});
+					mostrantCartes = false;
+				}
+		}, 1000);
 	},
 	methods: {
 		clickCard: function(i){
@@ -33,26 +41,28 @@ var game = new Vue({
 	},
 	watch: {
 		current_card: function(value){
-			if (value.texture === back) return;
-			var front = null;
-			var i_front = -1;
-			for (var i = 0; i < this.current_card.length; i++){
-				if (!this.current_card[i].done && this.current_card[i].texture !== back){
-					if (front){
-						if (front.texture === this.current_card[i].texture){
-							front.done = this.current_card[i].done = true;
-							this.num_cards--;
+			if (!mostrantCartes){
+				if (value.texture === back) return;
+				var front = null;
+				var i_front = -1;
+				for (var i = 0; i < this.current_card.length; i++){
+					if (!this.current_card[i].done && this.current_card[i].texture !== back){
+						if (front){
+							if (front.texture === this.current_card[i].texture){
+								front.done = this.current_card[i].done = true;
+								this.num_cards--;
+							}
+							else{
+								Vue.set(this.current_card, i, {done: false, texture: back});
+								Vue.set(this.current_card, i_front, {done: false, texture: back});
+								this.bad_clicks++;
+								break;
+							}
 						}
 						else{
-							Vue.set(this.current_card, i, {done: false, texture: back});
-							Vue.set(this.current_card, i_front, {done: false, texture: back});
-							this.bad_clicks++;
-							break;
+							front = this.current_card[i];
+							i_front = i;
 						}
-					}
-					else{
-						front = this.current_card[i];
-						i_front = i;
 					}
 				}
 			}			
