@@ -26,11 +26,11 @@ var game = new Vue({
 		}
 		mostrantCartes = true;
 		setTimeout(() => {
-				console.log("Delayed for 1 second.");
-				for (var i = 0; i < this.current_card.length; i++){
-					Vue.set(this.current_card, i, {done: false, texture: back});
-					mostrantCartes = false;
-				}
+			console.log("Delayed for 1 second.");
+			for (var i = 0; i < this.current_card.length; i++){
+				Vue.set(this.current_card, i, {done: false, texture: back});
+			}
+			mostrantCartes = false;
 		}, 1000);
 	},
 	methods: {
