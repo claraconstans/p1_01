@@ -5,3 +5,7 @@ function p2(){
 function p3(){
 	loadpage("./pi_3/index.html");
 }
+
+function pi(){
+	loadpage("./pi/index.html");
+}
