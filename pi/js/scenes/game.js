@@ -65,7 +65,7 @@ class GameScene extends Phaser.Scene {
 				card.disableBody(true,true);
 				if (this.firstClick){
 					if (this.firstClick.card_id !== card.card_id){
-						this.score -= 20;
+						this.score -= puntsRestar;
 						this.firstClick.enableBody(false, 0, 0, true, true);
 						card.enableBody(false, 0, 0, true, true);
 						if (this.score <= 0){
@@ -75,7 +75,7 @@ class GameScene extends Phaser.Scene {
 					}
 					else{
 						this.correct++;
-						if (this.correct >= 2){
+						if (this.correct >= numCartes){
 							alert("You Win with " + this.score + " points.");
 							loadpage("../");
 						}
