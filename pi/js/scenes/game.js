@@ -44,6 +44,11 @@ class GameScene extends Phaser.Scene {
 		arraycards = arraycards.slice(0, numCartes*2);
 		arraycards.sort(function(){return Math.random() - 0.5});
 
+		numArray=0;
+		for (var i = 0; i < numCartes; i++){
+			this.add.image(0, 0, arraycards[numArray]);
+		}
+
 		/*this.add.image(750, 493, arraycards[0]);
 		this.add.image(850, 493, arraycards[1]);
 		this.add.image(950, 493, arraycards[2]);
