@@ -5,6 +5,7 @@ class GameScene extends Phaser.Scene {
 		this.firstClick = null;
 		this.score = 100;
 		this.correct = 0;
+		this.player = "";
     }
 
     preload (){	
@@ -18,20 +19,25 @@ class GameScene extends Phaser.Scene {
 	}
 	
     create (){	
-		let arraycards = ['co', 'sb', 'co', 'sb'];
-		this.cameras.main.setBackgroundColor(0xBFFCFF);
+		let arraycards = ['cb', 'cb', 'co', 'co', 'sb', 'sb', 'so', 'so', 'tb', 'tb', 'to', 'to'];
+		this.cameras.main.setBackgroundColor(0x98b396);
 		
-		this.add.image(250, 300, arraycards[0]);
-		this.add.image(350, 300, arraycards[1]);
-		this.add.image(450, 300, arraycards[2]);
-		this.add.image(550, 300, arraycards[3]);
+		var json = localStorage.getItem("config") || '{"cards":2,"dificulty":"hard"}';
+		options_data = JSON.parse(json);
+		var numCartes = options_data.cards;
+		var dificultat = options_data.dificulty;
+
+		this.add.image(750, 493, arraycards[0]);
+		this.add.image(850, 493, arraycards[1]);
+		this.add.image(950, 493, arraycards[2]);
+		this.add.image(1050, 493, arraycards[3]);
 		
 		this.cards = this.physics.add.staticGroup();
 		
-		this.cards.create(250, 300, 'back');
-		this.cards.create(350, 300, 'back');
-		this.cards.create(450, 300, 'back');
-		this.cards.create(550, 300, 'back');
+		this.cards.create(750, 493, 'back');
+		this.cards.create(850, 493, 'back');
+		this.cards.create(950, 493, 'back');
+		this.cards.create(1050, 493, 'back');
 		
 		let i = 0;
 		this.cards.children.iterate((card)=>{
