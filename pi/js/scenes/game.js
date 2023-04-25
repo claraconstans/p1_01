@@ -55,9 +55,21 @@ class GameScene extends Phaser.Scene {
 		this.cards = this.physics.add.staticGroup();
 		for (var c = 0; c < numCartes; c++){
 			for (var f = 0; f < 2; f++){
-				this.add.image(this.cameras.main.centerX+125*c-96*numCartes/2, this.cameras.main.centerY-128*numCartes/2+150*f, 'back');
+				this.cards.create(this.cameras.main.centerX+125*c-96*numCartes/2, this.cameras.main.centerY-128*numCartes/2+150*f, 'back');
 			}
 		}
+
+		/*this.add.image(250, 300, arraycards[0]);
+		this.add.image(350, 300, arraycards[1]);
+		this.add.image(450, 300, arraycards[2]);
+		this.add.image(550, 300, arraycards[3]);
+		
+		this.cards = this.physics.add.staticGroup();
+		
+		this.cards.create(250, 300, 'back');
+		this.cards.create(350, 300, 'back');
+		this.cards.create(450, 300, 'back');
+		this.cards.create(550, 300, 'back');*/
 		
 		let i = 0;
 		this.cards.children.iterate((card)=>{
@@ -71,6 +83,7 @@ class GameScene extends Phaser.Scene {
 						this.score -= puntsRestar;
 						this.firstClick.enableBody(false, 0, 0, true, true);
 						card.enableBody(false, 0, 0, true, true);
+
 						if (this.score <= 0){
 							alert("Game Over");
 							loadpage("../");
