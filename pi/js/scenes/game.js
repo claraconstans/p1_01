@@ -23,16 +23,17 @@ class GameScene extends Phaser.Scene {
 		this.cameras.main.setBackgroundColor(0x98b396);
 		
 		var json = localStorage.getItem("config") || '{"cards":2,"dificulty":"hard"}';
-		options_data = JSON.parse(json);
+		var options_data = JSON.parse(json);
 		var numCartes = options_data.cards;
+		var dificultat = options_data.dificulty;
 		var temps = null;
 		var puntsRestar = null;
 		
-		if (options_data.dificulty == "easy"){
+		if (dificultat == "easy"){
 			temps = 2000;
 			puntsRestar = 5;
 		}
-		else if (options_data.dificulty == "normal"){
+		else if (dificultat == "normal"){
 			temps = 1000;
 			puntsRestar = 10;
 		}
@@ -44,22 +45,19 @@ class GameScene extends Phaser.Scene {
 		arraycards = arraycards.slice(0, numCartes*2);
 		arraycards.sort(function(){return Math.random() - 0.5});
 
-		numArray=0;
-		for (var i = 0; i < numCartes; i++){
-			this.add.image(0, 0, arraycards[numArray]);
+		var numArray=0;
+		for (var c = 0; c < numCartes; c++){
+			for (var f = 0; f < 2; f++){
+				this.add.image(300+100*c, 300+130*f, arraycards[numArray]);
+				numArray++;
+			}
 		}
-
-		/*this.add.image(750, 493, arraycards[0]);
-		this.add.image(850, 493, arraycards[1]);
-		this.add.image(950, 493, arraycards[2]);
-		this.add.image(1050, 493, arraycards[3]);
-		
 		this.cards = this.physics.add.staticGroup();
-		
-		this.cards.create(750, 493, 'back');
-		this.cards.create(850, 493, 'back');
-		this.cards.create(950, 493, 'back');
-		this.cards.create(1050, 493, 'back');*/
+		for (var c = 0; c < numCartes; c++){
+			for (var f = 0; f < 2; f++){
+				this.add.image(300+100*c, 300+130*f, 'back');
+			}
+		}
 		
 		let i = 0;
 		this.cards.children.iterate((card)=>{
