@@ -48,14 +48,14 @@ class GameScene extends Phaser.Scene {
 		var numArray=0;
 		for (var c = 0; c < numCartes; c++){
 			for (var f = 0; f < 2; f++){
-				this.add.image(300+100*c, 300+130*f, arraycards[numArray]);
+				this.add.image(this.cameras.main.centerX+125*c-96*numCartes/2, this.cameras.main.centerY-128*numCartes/2+150*f, arraycards[numArray]);
 				numArray++;
 			}
 		}
 		this.cards = this.physics.add.staticGroup();
 		for (var c = 0; c < numCartes; c++){
 			for (var f = 0; f < 2; f++){
-				this.add.image(300+100*c, 300+130*f, 'back');
+				this.add.image(this.cameras.main.centerX+125*c-96*numCartes/2, this.cameras.main.centerY-128*numCartes/2+150*f, 'back');
 			}
 		}
 		
