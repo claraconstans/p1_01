@@ -25,9 +25,26 @@ class GameScene extends Phaser.Scene {
 		var json = localStorage.getItem("config") || '{"cards":2,"dificulty":"hard"}';
 		options_data = JSON.parse(json);
 		var numCartes = options_data.cards;
-		var dificultat = options_data.dificulty;
+		var temps = null;
+		var puntsRestar = null;
+		
+		if (options_data.dificulty == "easy"){
+			temps = 2000;
+			puntsRestar = 5;
+		}
+		else if (options_data.dificulty == "normal"){
+			temps = 1000;
+			puntsRestar = 10;
+		}
+		else{
+			temps = 500;
+			puntsRestar = 20;
+		}
 
-		this.add.image(750, 493, arraycards[0]);
+		arraycards = arraycards.slice(0, numCartes*2);
+		arraycards.sort(function(){return Math.random() - 0.5});
+
+		/*this.add.image(750, 493, arraycards[0]);
 		this.add.image(850, 493, arraycards[1]);
 		this.add.image(950, 493, arraycards[2]);
 		this.add.image(1050, 493, arraycards[3]);
@@ -37,7 +54,7 @@ class GameScene extends Phaser.Scene {
 		this.cards.create(750, 493, 'back');
 		this.cards.create(850, 493, 'back');
 		this.cards.create(950, 493, 'back');
-		this.cards.create(1050, 493, 'back');
+		this.cards.create(1050, 493, 'back');*/
 		
 		let i = 0;
 		this.cards.children.iterate((card)=>{
