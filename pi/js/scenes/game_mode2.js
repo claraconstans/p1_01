@@ -4,7 +4,6 @@ class GameScene extends Phaser.Scene {
         this.cards = null;
         this.firstClick = null;
         this.score = 100;
-        this.level = 1;
         this.correct = 0;
         this.player = "";
     }
@@ -99,7 +98,6 @@ class GameScene extends Phaser.Scene {
 					else{
 						this.correct++;
 						if (this.correct >= numCartes){
-							this.level++;
                             this.correct = 0;
                             if (numCartes<6) numCartes++;
                             if(dificultat=="easy"){
