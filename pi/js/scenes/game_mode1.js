@@ -29,7 +29,6 @@ class GameScene extends Phaser.Scene {
 				partidaGuardada = arrayPartides[sessionStorage.idPartida];
 			}
 		}
-		console.log(partidaGuardada)
 
 		var numCartes = null;
 		var dificultat = null;
@@ -63,7 +62,6 @@ class GameScene extends Phaser.Scene {
 					aux++;
 				}
 			}
-			
 		}
 		else{
 			this.player = sessionStorage.getItem("username","unknown");
@@ -71,8 +69,6 @@ class GameScene extends Phaser.Scene {
 			var options_data = JSON.parse(json);
 			numCartes = options_data.cards;
 			dificultat = options_data.dificulty;
-			temps = null;
-			puntsRestar = null;
 			
 			if (dificultat == "easy"){
 				temps = 2000;
@@ -168,7 +164,7 @@ class GameScene extends Phaser.Scene {
 		const botoGuardar = this.add.text(this.cameras.main.centerX-100, 520, 'Guardar Partida', {fontSize: '20px', fill: '#000'});
 		botoGuardar.setInteractive();
 		botoGuardar.on('pointerdown', () => {
-			let situacioCartes = {};
+			let situacioCartes = [];
 			let aux = 0;
 			this.cards.children.iterate((card) => {
 				situacioCartes[aux] = card.active;
