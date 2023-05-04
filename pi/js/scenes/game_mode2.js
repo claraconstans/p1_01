@@ -153,7 +153,7 @@ class GameScene extends Phaser.Scene {
                             this.score=100;
                             this.correct = 0;
                             if (numCartes<6) numCartes++;
-                            if(dificultat=="easy"){
+                            if (dificultat=="easy"){
                                 dificultat = "normal";
                             }
                             else if (dificultat == "normal"){
@@ -161,14 +161,14 @@ class GameScene extends Phaser.Scene {
                             }
                             puntsRestar +=10;
                             if(partidaGuardada){
-                                sessionStorage.idPartida = null;
+                                sessionStorage.idPartida=null;
                                 var json = localStorage.getItem("config") || '{"cards":2,"dificulty":"hard"}';
-                                var options_data = JSON.parse(json);
+								var options_data = JSON.parse(json);
                             }
                             options_data.cards = numCartes;
 							options_data.dificulty = dificultat;
 							options_data.puntsPerd = puntsRestar;	
-							sessionStorage.setItem("config", JSON.stringify(options_data));
+							localStorage.setItem("config", JSON.stringify(options_data));
                             this.scene.restart();
 						}
 					}
