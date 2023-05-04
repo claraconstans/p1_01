@@ -162,7 +162,7 @@ class GameScene extends Phaser.Scene {
                             puntsRestar +=10;
                             if(partidaGuardada){
                                 sessionStorage.idPartida = null;
-                                var json = sessionStorage.getItem("config") || '{"cards":2,"dificulty":"hard"}';
+                                var json = localStorage.getItem("config") || '{"cards":2,"dificulty":"hard"}';
                                 var options_data = JSON.parse(json);
                             }
                             options_data.cards = numCartes;
