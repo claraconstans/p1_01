@@ -150,6 +150,7 @@ class GameScene extends Phaser.Scene {
 					else{
 						this.correct++;
 						if (this.correct >= numCartes){
+                            this.score=100;
                             this.correct = 0;
                             if (numCartes<6) numCartes++;
                             if(dificultat=="easy"){
@@ -159,6 +160,11 @@ class GameScene extends Phaser.Scene {
                                 dificultat = "hard";
                             }
                             puntsRestar +=10;
+                            if(partidaGuardada){
+                                sessionStorage.idPartida = null;
+                                var json = sessionStorage.getItem("config") || '{"cards":2,"dificulty":"hard"}';
+                                var options_data = JSON.parse(json);
+                            }
                             options_data.cards = numCartes;
 							options_data.dificulty = dificultat;
 							options_data.puntsPerd = puntsRestar;	
