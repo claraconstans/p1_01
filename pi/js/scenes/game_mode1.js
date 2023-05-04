@@ -22,23 +22,45 @@ class GameScene extends Phaser.Scene {
 		let arraycards = ['cb', 'cb', 'co', 'co', 'sb', 'sb', 'so', 'so', 'tb', 'tb', 'to', 'to'];
 		this.cameras.main.setBackgroundColor(0x98b396);
 		
+		var numCartes = null;
+		var dificultat = null;
+		var temps = null;
+		var puntsRestar = null;
+
 		let partidaGuardada = null;
 		if (sessionStorage.idPartida && localStorage.partides){
 			let arrayPartides = JSON.parse(localStorage.partides);
 			if (sessionStorage.idPartida < arrayPartides.length)
 			partidaGuardada = arrayPartides[sessionStorage.idPartida];
 		}
-		console.log(partidaGuardada);
+		
 		if(partidaGuardada){
+			this.score = partidaGuardada.scoreGuardat;
+			this.correct = partidaGuardada.correctGuardat;
+			this.player = partidaGuardada.playerGuardat;
+			numCartes = partidaGuardada.numCartesGuardat;
+			dificultat = partidaGuardada.dificultatGuardat;
+			temps = partidaGuardada.tempsGuardat;
+			puntsRestar = partidaGuardada.puntsRestarGuardat;
+			arraycards = partidaGuardada.arraycardsGuardat;
 
+			var numArray=0;
+			for (let c = 0; c < numCartes; c++){
+				for (let f = 0; f < 2; f++){
+					this.add.image(this.cameras.main.centerX+125*c-96*numCartes/2, this.cameras.main.centerY-128*numCartes/2+150*f, arraycards[numArray]);
+					numArray++;
+				}
+			}
+			
 		}
 		else{
+			this.player = sessionStorage.getItem("username","unknown");
 			var json = localStorage.getItem("config") || '{"cards":2,"dificulty":"hard"}';
 			var options_data = JSON.parse(json);
-			var numCartes = options_data.cards;
-			var dificultat = options_data.dificulty;
-			var temps = null;
-			var puntsRestar = null;
+			numCartes = options_data.cards;
+			dificultat = options_data.dificulty;
+			temps = null;
+			puntsRestar = null;
 			
 			if (dificultat == "easy"){
 				temps = 2000;
@@ -133,7 +155,7 @@ class GameScene extends Phaser.Scene {
 					tempsGuardat: temps,
 					puntsRestarGuardat: puntsRestar,
 					arraycardsGuardat: arraycards,
-					mode1: true
+					mode: 1
 				};
 				let arrayPartides = [];
 				if(localStorage.partides){

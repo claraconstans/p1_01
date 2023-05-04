@@ -15,7 +15,15 @@ var load_obj = function(){
 		methods: { 
 			load: function(i){
 				sessionStorage.idPartida = i;
-				loadpage("../html/game.html");
+				if(this.saves[i].mode == "1"){
+					loadpage("../html/phasergame_mode1.html");
+				}
+				else if(this.saves[i].mode == "2"){
+					loadpage("../html/phasergame_mode2.html");
+				}
+				else {
+					loadpage("../html/game.html");
+				}
 			}
 		}
 	});
