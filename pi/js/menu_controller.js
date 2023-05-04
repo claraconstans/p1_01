@@ -6,8 +6,12 @@ function start_game(){
 	loadpage("./game.html");
 }
 
-function phaser_game(){
-	loadpage("./phasergame.html");
+function phaser_game_mode1(){
+	loadpage("./phasergame_mode1.html");
+}
+
+function phaser_game_mode2(){
+	loadpage("./phasergame_mode2.html");
 }
 
 function puntuacio(){
