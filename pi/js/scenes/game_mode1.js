@@ -22,17 +22,20 @@ class GameScene extends Phaser.Scene {
 		let arraycards = ['cb', 'cb', 'co', 'co', 'sb', 'sb', 'so', 'so', 'tb', 'tb', 'to', 'to'];
 		this.cameras.main.setBackgroundColor(0x98b396);
 		
+		let partidaGuardada = null;
+		if (sessionStorage.idPartida && localStorage.partides){
+			console.log(partidaGuardada)
+			let arrayPartides = JSON.parse(localStorage.partides);
+			if (sessionStorage.idPartida < arrayPartides.length){
+				partidaGuardada = arrayPartides[sessionStorage.idPartida];
+			}
+		}
+		console.log(partidaGuardada)
+
 		var numCartes = null;
 		var dificultat = null;
 		var temps = null;
 		var puntsRestar = null;
-
-		let partidaGuardada = null;
-		if (sessionStorage.idPartida && localStorage.partides){
-			let arrayPartides = JSON.parse(localStorage.partides);
-			if (sessionStorage.idPartida < arrayPartides.length)
-			partidaGuardada = arrayPartides[sessionStorage.idPartida];
-		}
 		
 		if(partidaGuardada){
 			this.score = partidaGuardada.scoreGuardat;
@@ -49,6 +52,16 @@ class GameScene extends Phaser.Scene {
 				for (let f = 0; f < 2; f++){
 					this.add.image(this.cameras.main.centerX+125*c-96*numCartes/2, this.cameras.main.centerY-128*numCartes/2+150*f, arraycards[numArray]);
 					numArray++;
+				}
+			}
+			this.cards = this.physics.add.staticGroup();
+			let aux = 0;
+			for (let c = 0; c < numCartes; c++){
+				for (let f = 0; f < 2; f++){
+					if(partidaGuardada.situacioCartesGuardat[aux]==true){
+						this.cards.create(this.cameras.main.centerX+125*c-96*numCartes/2, this.cameras.main.centerY-128*numCartes/2+150*f, 'back');
+					}
+					aux++;
 				}
 			}
 			
@@ -95,8 +108,17 @@ class GameScene extends Phaser.Scene {
 				
 		let i = 0;
 		this.cards.children.iterate((card)=>{
-			card.card_id = arraycards[i];
-			i++;
+			if(partidaGuardada){
+				while(partidaGuardada.situacioCartesGuardat[i]==false){
+					i++;
+				}
+				card.card_id = arraycards[i];
+				i++;
+			}
+			else{
+				card.card_id = arraycards[i];
+				i++;
+			}
 			card.setInteractive();
 			card.on('pointerup', () => {
 				card.disableBody(true,true);
@@ -143,31 +165,38 @@ class GameScene extends Phaser.Scene {
 					this.firstClick = card;
 				}
 			}, card);
-			const botoGuardar = this.add.text(this.cameras.main.centerX-100, 520, 'Guardar Partida', {fontSize: '20px', fill: '#000'});
-    		botoGuardar.setInteractive();
-			botoGuardar.on('pointerdown', () => { 
-				let partida = {
-					scoreGuardat: this.score,
-					correctGuardat: this.correct,
-					playerGuardat: this.player,
-					numCartesGuardat: numCartes,
-					dificultatGuardat: dificultat,
-					tempsGuardat: temps,
-					puntsRestarGuardat: puntsRestar,
-					arraycardsGuardat: arraycards,
-					mode: 1
-				};
-				let arrayPartides = [];
-				if(localStorage.partides){
-					arrayPartides = JSON.parse(localStorage.partides);
-					if(!Array.isArray(arrayPartides)) arrayPartides = [];
-				}
-				arrayPartides.push(partida);
-				localStorage.partides=JSON.stringify(arrayPartides);
-				loadpage("../");
-			});
 		});
-		
+		const botoGuardar = this.add.text(this.cameras.main.centerX-100, 520, 'Guardar Partida', {fontSize: '20px', fill: '#000'});
+		botoGuardar.setInteractive();
+		botoGuardar.on('pointerdown', () => {
+			let situacioCartes = {};
+			let aux = 0;
+			this.cards.children.iterate((card) => {
+				situacioCartes[aux] = card.active;
+				aux++;
+			});
+
+			let partida = {
+				scoreGuardat: this.score,
+				correctGuardat: this.correct,
+				playerGuardat: this.player,
+				numCartesGuardat: numCartes,
+				dificultatGuardat: dificultat,
+				tempsGuardat: temps,
+				puntsRestarGuardat: puntsRestar,
+				arraycardsGuardat: arraycards,
+				situacioCartesGuardat: situacioCartes,
+				mode: 1
+			};
+			let arrayPartides = [];
+			if(localStorage.partides){
+				arrayPartides = JSON.parse(localStorage.partides);
+				if(!Array.isArray(arrayPartides)) arrayPartides = [];
+			}
+			arrayPartides.push(partida);
+			localStorage.partides=JSON.stringify(arrayPartides);
+			loadpage("../");
+		});		
 	}
 	
 	update (){	}
