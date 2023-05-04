@@ -109,10 +109,20 @@ class GameScene extends Phaser.Scene {
 					this.firstClick = card;
 				}
 			}, card);
-			const botoGuardar = this.add.text(100, 100, 'Guardar Partida', {fontSize: '20px', fill: '#000'});
+			const botoGuardar = this.add.text(this.cameras.main.centerX-100, 520, 'Guardar Partida', {fontSize: '20px', fill: '#000'});
     		botoGuardar.setInteractive();
 			botoGuardar.on('pointerdown', () => { 
-				console.log('hola'); 
+				let partida = {
+					scoreGuardat: this.score,
+					correctGuardat: this.correct,
+					playerGuardat: this.player,
+					numCartesGuardat: numCartes,
+					dificultatGuardat: dificultat,
+					tempsGuardat: temps,
+					puntsRestarGuardat: puntsRestar,
+					arraycardsGuardat: arraycards,
+					mode1: true
+				};
 			});
 		});
 		
