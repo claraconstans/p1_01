@@ -123,6 +123,13 @@ class GameScene extends Phaser.Scene {
 					arraycardsGuardat: arraycards,
 					mode1: true
 				};
+				let llistaPartides = [];
+				if(localStorage.partides){
+					llistaPartides=JSON.parse(localStorage.partides);
+				}
+				llistaPartides.push(partida);
+				localStorage.partides=JSON.stringify(llistaPartides);
+				loadpage("../");
 			});
 		});
 		
