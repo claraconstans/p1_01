@@ -24,7 +24,6 @@ class GameScene extends Phaser.Scene {
 		
 		let partidaGuardada = null;
 		if (sessionStorage.idPartida && localStorage.partides){
-			console.log(partidaGuardada)
 			let arrayPartides = JSON.parse(localStorage.partides);
 			if (sessionStorage.idPartida < arrayPartides.length){
 				partidaGuardada = arrayPartides[sessionStorage.idPartida];

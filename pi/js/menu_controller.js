@@ -1,50 +1,50 @@
-function start_game(){
-	name = prompt("User name");
-	
-	sessionStorage.setItem("username", name);
-	
-	loadpage("./game.html");
-}
+var menu = new Vue({
+	el: "#menu_id",
+	methods: {
+		start_game(){
+			sessionStorage.clear();
+			name = prompt("User name");
+			sessionStorage.setItem("username", name);
+			loadpage("./game.html");
+		},
 
-function phaser_game_mode1(){
-	sessionStorage.clear();
-	name = prompt("User name");
-	
-	sessionStorage.setItem("username", name);
+		phaser_game_mode1(){
+			sessionStorage.clear();
+			name = prompt("User name");
+			sessionStorage.setItem("username", name);
+			loadpage("./phasergame_mode1.html");
+		},
 
-	loadpage("./phasergame_mode1.html");
-}
+		phaser_game_mode2(){
+			sessionStorage.clear();
+			name = prompt("User name");
+			sessionStorage.setItem("username", name);
+			loadpage("./phasergame_mode2.html");
+		},
 
-function phaser_game_mode2(){
-	sessionStorage.clear();
-	name = prompt("User name");
-	
-	sessionStorage.setItem("username", name);
+		puntuacio(){
+			loadpage("./html/puntuacio.html");
+		},
 
-	loadpage("./phasergame_mode2.html");
-}
+		jugar(){
+			loadpage("./html/jugar.html");
+		},
 
-function puntuacio(){
-	loadpage("./html/puntuacio.html");
-}
+		exit(){
+			if (name != ""){
+				alert("Leaving " + name + "'s game");
+			}
+			name = "";
+			localStorage.clear();
+			loadpage("../index.html");
+		},
 
-function jugar(){
-	loadpage("./html/jugar.html");
-}
+		options(){
+			loadpage("./html/options.html");
+		},
 
-function exit (){
-	if (name != ""){
-		alert("Leaving " + name + "'s game");
+		load(){
+			loadpage("./html/load.html");
+		}
 	}
-	name = "";
-	loadpage("../index.html");
-}
-
-function options(){
-	loadpage("./html/options.html");
-}
-
-function load(){
-	loadpage("./html/load.html");
-}
-
+});
