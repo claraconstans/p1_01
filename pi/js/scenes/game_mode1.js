@@ -22,40 +22,52 @@ class GameScene extends Phaser.Scene {
 		let arraycards = ['cb', 'cb', 'co', 'co', 'sb', 'sb', 'so', 'so', 'tb', 'tb', 'to', 'to'];
 		this.cameras.main.setBackgroundColor(0x98b396);
 		
-		var json = localStorage.getItem("config") || '{"cards":2,"dificulty":"hard"}';
-		var options_data = JSON.parse(json);
-		var numCartes = options_data.cards;
-		var dificultat = options_data.dificulty;
-		var temps = null;
-		var puntsRestar = null;
-		
-		if (dificultat == "easy"){
-			temps = 2000;
-			puntsRestar = 5;
+		let partidaGuardada = null;
+		if (sessionStorage.idPartida && localStorage.partides){
+			let arrayPartides = JSON.parse(localStorage.partides);
+			if (sessionStorage.idPartida < arrayPartides.length)
+			partidaGuardada = arrayPartides[sessionStorage.idPartida];
 		}
-		else if (dificultat == "normal"){
-			temps = 1000;
-			puntsRestar = 10;
+		console.log(partidaGuardada);
+		if(partidaGuardada){
+
 		}
 		else{
-			temps = 500;
-			puntsRestar = 20;
-		}
-
-		arraycards = arraycards.slice(0, numCartes*2);
-		arraycards.sort(function(){return Math.random() - 0.5});
-
-		var numArray=0;
-		for (let c = 0; c < numCartes; c++){
-			for (let f = 0; f < 2; f++){
-				this.add.image(this.cameras.main.centerX+125*c-96*numCartes/2, this.cameras.main.centerY-128*numCartes/2+150*f, arraycards[numArray]);
-				numArray++;
+			var json = localStorage.getItem("config") || '{"cards":2,"dificulty":"hard"}';
+			var options_data = JSON.parse(json);
+			var numCartes = options_data.cards;
+			var dificultat = options_data.dificulty;
+			var temps = null;
+			var puntsRestar = null;
+			
+			if (dificultat == "easy"){
+				temps = 2000;
+				puntsRestar = 5;
 			}
-		}
-		this.cards = this.physics.add.staticGroup();
-		for (let c = 0; c < numCartes; c++){
-			for (let f = 0; f < 2; f++){
-				this.cards.create(this.cameras.main.centerX+125*c-96*numCartes/2, this.cameras.main.centerY-128*numCartes/2+150*f, 'back');
+			else if (dificultat == "normal"){
+				temps = 1000;
+				puntsRestar = 10;
+			}
+			else{
+				temps = 500;
+				puntsRestar = 20;
+			}
+
+			arraycards = arraycards.slice(0, numCartes*2);
+			arraycards.sort(function(){return Math.random() - 0.5});
+
+			var numArray=0;
+			for (let c = 0; c < numCartes; c++){
+				for (let f = 0; f < 2; f++){
+					this.add.image(this.cameras.main.centerX+125*c-96*numCartes/2, this.cameras.main.centerY-128*numCartes/2+150*f, arraycards[numArray]);
+					numArray++;
+				}
+			}
+			this.cards = this.physics.add.staticGroup();
+			for (let c = 0; c < numCartes; c++){
+				for (let f = 0; f < 2; f++){
+					this.cards.create(this.cameras.main.centerX+125*c-96*numCartes/2, this.cameras.main.centerY-128*numCartes/2+150*f, 'back');
+				}
 			}
 		}
 				
@@ -123,12 +135,13 @@ class GameScene extends Phaser.Scene {
 					arraycardsGuardat: arraycards,
 					mode1: true
 				};
-				let llistaPartides = [];
+				let arrayPartides = [];
 				if(localStorage.partides){
-					llistaPartides=JSON.parse(localStorage.partides);
+					arrayPartides = JSON.parse(localStorage.partides);
+					if(!Array.isArray(arrayPartides)) arrayPartides = [];
 				}
-				llistaPartides.push(partida);
-				localStorage.partides=JSON.stringify(llistaPartides);
+				arrayPartides.push(partida);
+				localStorage.partides=JSON.stringify(arrayPartides);
 				loadpage("../");
 			});
 		});

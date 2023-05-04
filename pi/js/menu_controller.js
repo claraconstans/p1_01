@@ -7,10 +7,18 @@ function start_game(){
 }
 
 function phaser_game_mode1(){
+	name = prompt("User name");
+	
+	sessionStorage.setItem("username", name);
+
 	loadpage("./phasergame_mode1.html");
 }
 
 function phaser_game_mode2(){
+	name = prompt("User name");
+	
+	sessionStorage.setItem("username", name);
+	
 	loadpage("./phasergame_mode2.html");
 }
 
