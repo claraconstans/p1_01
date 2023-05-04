@@ -109,7 +109,13 @@ class GameScene extends Phaser.Scene {
 					this.firstClick = card;
 				}
 			}, card);
+			const botoGuardar = this.add.text(100, 100, 'Guardar Partida', {fontSize: '20px', fill: '#000'});
+    		botoGuardar.setInteractive();
+			botoGuardar.on('pointerdown', () => { 
+				console.log('hola'); 
+			});
 		});
+		
 	}
 	
 	update (){	}
