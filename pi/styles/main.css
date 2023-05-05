@@ -6,34 +6,80 @@ input[type=number]{
     text-align: center;
 }
 
+body{
+	background-color: rgb(152, 179, 150);
+	font-family: sans-serif;
+}
+
 #title{
-	font-size: 26px;
-	line-height: 75px;
+	font-size: 2.063rem;
+	color: rgb(98, 124, 95);
+	font-family: sans-serif;
+}
+
+.titol{
+	grid-column: 2/3;
+	grid-row: 1;
+}
+
+.return{
+	grid-column: 2/3;
+	grid-row: 4;
+	margin: auto;
 }
 
 .menu-object{
-	display:block;
-	margin-left: auto;
-	margin-right: auto;
-	width: 300px;
-	height: 75px;
-	font-size: 16px;
-	margin-top: 10px;
+	display: grid;
+	grid-template-columns: 1fr 30rem 1fr;
+	grid-gap: 0.625rem;
+	grid-auto-rows: minmax(6.25rem, auto);
+}
+
+.opcioCartes{
+	grid-column: 2/3;
+	grid-row: 2;
+	margin: auto;
+}
+
+.opcioDificultat{
+	grid-column: 2/3;
+	grid-row: 3;
+	margin: auto;
+}
+
+#saves_id{
+	grid-column: 2/3;
+	grid-row: 2;
+	margin: auto;
 }
 
 p{
+	font-size: 1.263rem;
 	text-align: center;
 }
 
-button.menu-object:active{
-	font-size: 18px;
-	width: 275px;
-	height: 70px;
+button.button{
+	font-size: 1.563rem;
+	grid-column: 2/3;
+	color: rgb(98, 124, 95);
+	background-color: rgb(153, 178, 151);
+	
+	border: 0.125rem solid rgb(98, 124, 95);
 }
 
-button.menu-object:hover:not(:active){
-	font-size: 22px;
-	width: 325px;
-	height: 85px;
+button.button:active{
+	width: 17.188rem;
+	height: 4.375rem;
+	background-color: rgb(98, 124, 95);
+	color: rgb(153, 178, 151);
+	margin: auto;
+}
+
+button.button:hover:not(:active){
+	width: 27.313rem;
+	height: 5.313rem;
+	background-color: rgb(98, 124, 95);
+	color: rgb(153, 178, 151);
+	margin: auto;
 }
 
