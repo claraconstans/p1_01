@@ -161,7 +161,7 @@ class GameScene extends Phaser.Scene {
 				}
 			}, card);
 		});
-		const botoGuardar = this.add.text(this.cameras.main.centerX-100, 520, 'Guardar Partida', {fontSize: '20px', fill: '#000'});
+		const botoGuardar = this.add.text(this.cameras.main.centerX-123, 620, 'Guardar Partida', {fontSize: '20px', fill: '#000'});
 		botoGuardar.setInteractive();
 		botoGuardar.on('pointerdown', () => {
 			let situacioCartes = [];
