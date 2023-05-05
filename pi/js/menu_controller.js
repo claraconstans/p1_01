@@ -5,7 +5,7 @@ var menu = new Vue({
 			sessionStorage.clear();
 			name = prompt("User name");
 			sessionStorage.setItem("username", name);
-			loadpage("./html/game.html");
+			loadpage("./game.html");
 		},
 		phaser_game_mode1(){
 			sessionStorage.clear();
