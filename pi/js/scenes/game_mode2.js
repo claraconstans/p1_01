@@ -161,7 +161,6 @@ class GameScene extends Phaser.Scene {
 							options_data.dificulty = dificultat;
 							options_data.puntsPerd = puntsRestar;	
 							sessionStorage.setItem("config", JSON.stringify(options_data));
-							//if(partidaGuardada){}
                             this.scene.restart();
 						}
 					}
