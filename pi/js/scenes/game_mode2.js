@@ -69,18 +69,15 @@ class GameScene extends Phaser.Scene {
             var options_data = JSON.parse(json);
             numCartes = options_data.cards;
             dificultat = options_data.dificulty;
-
+			puntsRestar = options_data.puntsPerd
             if (dificultat == "easy"){
                 temps = 2000;
-                puntsRestar = 5;
             }
             else if (dificultat == "normal"){
                 temps = 1000;
-                puntsRestar = 10;
             }
             else{
                 temps = 500;
-                puntsRestar = 20;
             }
             
             arraycards = arraycards.slice(0, numCartes*2);
